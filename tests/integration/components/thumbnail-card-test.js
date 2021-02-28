@@ -2,25 +2,19 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
-module('Integration | Component | thumbnail-card', function(hooks) {
+module('Integration | Component | thumbnail-card', function (hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  hooks.beforeEach(function () {
+    this.model = server.create('movie', { title: 'Test Movie' });
+  });
 
-    await render(hbs`<ThumbnailCard />`);
+  test('it renders correct movie title', async function (assert) {
+    await render(hbs`<ThumbnailCard @movie={{this.model}}/>`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <ThumbnailCard>
-        template block text
-      </ThumbnailCard>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.ok(this.element.querySelector('span').innerText, this.model.title);
   });
 });
