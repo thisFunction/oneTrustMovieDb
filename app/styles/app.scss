@@ -1,0 +1,44 @@
+@import 'ember-power-select';
+@import 'components/movies';
+@import 'components/thumbnail-card';
+@import 'components/detail';
+@import 'components/main-navigation';
+
+body {
+  font-family: Helvetica;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2, h3 {
+  color: #1d1d1d;
+  text-align: center;
+}
+
+a {
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+main {
+  width: 80%;
+  max-width: 1020px;
+}
+
+.logo {
+
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  margin: 45px auto;
+
+}
+

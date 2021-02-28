@@ -1,0 +1,9 @@
+{{page-title "Movies"}}
+
+<h2>Available movies</h2>
+
+<section class="movies">
+  {{#each this.filteredMovies as |movie|}}
+    <ThumbnailCard @movie={{movie}} />
+  {{/each}}
+</section>

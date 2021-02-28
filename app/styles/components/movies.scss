@@ -1,0 +1,18 @@
+.movies {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 25px;
+  column-gap: 25px;
+
+  @media (min-width: 561px) and (max-width: 760px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 761px) and (max-width: 1040px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 1041px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

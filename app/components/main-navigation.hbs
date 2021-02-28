@@ -1,0 +1,27 @@
+<nav class="navigation">
+  <LinkTo
+    @route="index"
+    @class="navigation__link {{if (eq this.router.currentRoute.name "index") "active-exact"}}"
+    >
+    MAIN
+    </LinkTo>
+  <LinkTo
+    @class="navigation__link {{if (eq this.router.currentRoute.name "movies.index") "active-exact"}}"
+    @route="movies"
+    @query={{hash genre=null filter=null}}>
+    MOVIES
+    </LinkTo>
+
+  <PowerSelect @placeholder="Filter by Genre" @options={{this.genres}} @selected={{this.selectedGenre}} @onChange={{this.setSelectedGenre}} as |genre|>
+    {{genre}}
+  </PowerSelect>
+
+  <Input
+    @id="search-movies"
+    @class="navigation__input"
+    @type="text"
+    @value={{this.filter}}
+    @placeholder="Search by Title"
+    {{on "keyup" this.searchMovies}}
+  />
+</nav>

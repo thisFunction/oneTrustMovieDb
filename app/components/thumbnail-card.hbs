@@ -1,0 +1,9 @@
+<LinkTo @route="movies.detail" @model={{@movie.id}}>
+  <article class="thumbnail-card">
+    <img
+      class="thumbnail-card__image"
+      src={{@movie.posterUrl}}
+      alt={{concat @movie.title 'movie poster'}}>
+    <span class="thumbnail-card__title">{{@movie.title}}</span>
+  </article>
+</LinkTo>

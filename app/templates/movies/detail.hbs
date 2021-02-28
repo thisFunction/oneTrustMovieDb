@@ -1,0 +1,73 @@
+{{page-title @model.title}}
+
+<main class="movie-detail">
+  <h2>{{@model.title}} ({{@model.year}})</h2>
+
+  <section class="movie-detail__section">
+    <img
+      class="movie-detail__image"
+      src={{@model.posterUrl}}
+      alt={{concat @model.title 'movie poster'}}>
+
+    <aside class="movie-detail__data">
+      <p><b>Title:</b> {{@model.title}}</p>
+      <p><b>Director:</b> {{@model.director}}</p>
+      <p><b>Actors:</b> {{@model.actors}}</p>
+      <p><b>Genres:</b> {{@model.genres}}</p>
+      <p><b>IMDB link:</b> <a href={{@model.imdbLink}}>{{@model.imdbLink}}</a></p>
+      <hr>
+      <p><b>Summary:</b> {{@model.summary}}</p>
+    </aside>
+  </section>
+
+  <section>
+    <h3>Reviews</h3>
+
+    <p>Showing {{this.displayReviews.length}}/{{this.model.reviews.length}} Reviews</p>
+
+    <button
+      type="button"
+      class="movie-detail__button movie-detail__button-success"
+      {{on "click" this.toggleAddReview}}
+      disabled={{this.submitReview.isRunning}}>
+      {{if this.addingReview "Cancel" "Add Review"}}
+    </button>
+
+    {{#if this.reviewAdded}}
+      <span class="movie-detail__success">Your review was added!</span>
+    {{/if}}
+
+    {{#if this.addingReview}}
+      <article class="movie-detail__review movie-detail__review-editing">
+        <Textarea @class="movie-detail__content" @value={{this.content}} @placeholder="Add review here" />
+        <Input @class="movie-detail__name" @type="text" @placeholder="Your name" @value={{this.author}}/>
+        <button
+          class="movie-detail__button movie-detail__button-default"
+          type="button"
+          {{on "click" (perform this.submitReview)}}
+          disabled={{this.submitReview.isRunning}}
+        >
+        {{if this.submitReview.isIdle "Submit review" "Submitting ..."}}
+        </button>
+      </article>
+    {{/if}}
+
+
+
+    {{#each this.displayReviews as |review|}}
+      <article class="movie-detail__review">
+        <p>{{review.content}}</p>
+        <p class="movie-detail__author">{{review.author}}</p>
+      </article>
+    {{/each}}
+
+  {{#if this.model.reviews.length}}
+    <button
+      type="button"
+      class="movie-detail__button movie-detail__button-success"
+      {{on "click" this.toggleReviews}}>
+      {{if this.viewAllReviews "Show Less" "Show More"}}
+    </button>
+  {{/if}}
+  </section>
+</main>

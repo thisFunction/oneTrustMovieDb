@@ -1,0 +1,33 @@
+
+.navigation {
+  position: sticky;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  width: 100%;
+  background-image: linear-gradient(white 80%, transparent);
+  padding: 20px 20px 40px;
+  z-index: 10;
+
+  .ember-basic-dropdown-trigger {
+    width: 180px;
+  }
+
+  &__link {
+    margin: 0 40px;
+
+    &.active-exact {
+      color: #009688
+    }
+  }
+
+  &__input {
+    margin: 0 40px;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: inherit;
+    border: 1px solid #aaa;
+  }
+}
